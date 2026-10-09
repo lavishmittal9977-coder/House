@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Indore House Price Predictor
 
 Flask API + HTML/CSS/JavaScript frontend for the scikit-learn `LinearRegModel.pkl` pipeline.
@@ -36,3 +37,7 @@ app.py  LinearRegModel.pkl  requirements.txt
 templates/index.html
 static/css/style.css  static/js/script.js
 ```
+=======
+# House
+House price prediction model
+>>>>>>> ba6e376d3cc035cf14252404ea6b54b8e565fa32
