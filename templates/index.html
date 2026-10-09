@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Indore House Price Predictor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <span class="badge">ML · Linear Regression</span>
+      <h1>Indore House Price Predictor</h1>
+      <p>Enter the property details and get an instant price estimate.</p>
+    </div>
+  </header>
+
+  <main class="wrap layout">
+    <form id="form" class="card" novalidate>
+      <h2>Property details</h2>
+
+      <fieldset>
+        <legend>Location &amp; type</legend>
+        <div class="grid">
+          <div class="field span2">
+            <label for="Locality">Locality</label>
+            <select id="Locality" name="Locality" required></select>
+            <small class="err"></small>
+          </div>
+          <div class="field">
+            <label for="Property_Type">Property type</label>
+            <select id="Property_Type" name="Property_Type" required></select>
+            <small class="err"></small>
+          </div>
+          <div class="field">
+            <label for="Furnishing">Furnishing</label>
+            <select id="Furnishing" name="Furnishing" required></select>
+            <small class="err"></small>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Size &amp; layout</legend>
+        <div class="grid">
+          <div class="field">
+            <label for="BHK">BHK</label>
+            <input type="number" id="BHK" name="BHK" step="1" value="2" required>
+            <small class="err"></small>
+          </div>
+          <div class="field">
+            <label for="Bathrooms">Bathrooms</label>
+            <input type="number" id="Bathrooms" name="Bathrooms" step="1" value="2" required>
+            <small class="err"></small>
+          </div>
+          <div class="field">
+            <label for="Area_sqft">Area (sq ft)</label>
+            <input type="number" id="Area_sqft" name="Area_sqft" step="any" value="1000" required>
+            <small class="err"></small>
+          </div>
+          <div class="field">
+            <label for="Floor">Floor</label>
+            <input type="number" id="Floor" name="Floor" step="1" value="1" required>
+            <small class="err"></small>
+          </div>
+          <div class="field">
+            <label for="Parking">Parking spots</label>
+            <input type="number" id="Parking" name="Parking" step="1" value="1" required>
+            <small class="err"></small>
+          </div>
+          <div class="field">
+            <label for="Age_Years">Property age (years)</label>
+            <input type="number" id="Age_Years" name="Age_Years" step="any" value="5" required>
+            <small class="err"></small>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Surroundings</legend>
+        <div class="grid">
+          <div class="field">
+            <label for="Road_Width_ft">Road width (ft)</label>
+            <input type="number" id="Road_Width_ft" name="Road_Width_ft" step="any" value="30" required>
+            <small class="err"></small>
+          </div>
+          <div class="field">
+            <label for="Distance_Main_Road_km">Distance to main road (km)</label>
+            <input type="number" id="Distance_Main_Road_km" name="Distance_Main_Road_km" step="any" value="1" required>
+            <small class="err"></small>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="actions">
+        <button type="submit" id="submit" class="btn primary">Predict price</button>
+        <button type="button" id="reset" class="btn ghost">Reset</button>
+      </div>
+    </form>
+
+    <aside class="card result" id="result" aria-live="polite">
+      <h2>Estimated price</h2>
+      <div id="placeholder" class="placeholder">
+        <div class="icon">🏠</div>
+        <p>Fill in the form and press <strong>Predict price</strong> to see the estimate.</p>
+      </div>
+      <div id="output" hidden>
+        <div class="price"><span id="price">–</span> <span class="unit">Lakh</span></div>
+        <div class="sub" id="priceWords"></div>
+        <dl class="stats">
+          <div><dt>Price per sq ft</dt><dd id="ppsf">–</dd></div>
+          <div><dt>Locality</dt><dd id="sLocality">–</dd></div>
+          <div><dt>Type</dt><dd id="sType">–</dd></div>
+          <div><dt>Configuration</dt><dd id="sConfig">–</dd></div>
+        </dl>
+        <p class="note">Estimate from a linear regression model; actual market prices may differ.</p>
+      </div>
+      <div id="error" class="alert" role="alert" hidden></div>
+    </aside>
+  </main>
+
+  <footer class="wrap foot">Built with Flask · HTML · CSS · JavaScript</footer>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
